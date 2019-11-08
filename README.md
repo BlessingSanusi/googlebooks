@@ -2,7 +2,7 @@
 
 A MERN Stack Google Books Search with Google Books API
 
-	![app-img](images/react-book.png)
+![app-img](images/react-book.png)
 
 ### Overview
 
@@ -19,4 +19,4 @@ A MERN Stack Google Books Search with Google Books API
 * Mongodb - For Database
 
 ### Deployed Link
-[`React-Google-Book](https://radiant-beyond-81258.herokuapp.com/)
+[`React-Google-Book`](https://radiant-beyond-81258.herokuapp.com/)
