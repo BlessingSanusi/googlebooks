@@ -38,17 +38,21 @@ class Search extends Component {
       else {
       let results = response.data.items
       results = results.map(result => {
-        result = {
+        let resultObj = {
           key: result.id,
           id: result.id,
           title: result.volumeInfo.title,
           author: result.volumeInfo.authors,
           link: result.volumeInfo.infoLink,
           description: result.volumeInfo.description,
-          image: result.volumeInfo.imageLinks.thumbnail
+          // image: result.volumeInfo.imageLinks.thumbnail
           
         }
-        return result;
+        if (result.volumeInfo.imageLinks !== undefined) {
+          resultObj.image = result.volumeInfo.imageLinks.thumbnail
+        }
+
+        return resultObj;
       })  
       this.setState({ books: results, error: "" })
     }
@@ -61,13 +65,13 @@ class Search extends Component {
 
   handleSavedButton = e => {
     e.preventDefault();
-    console.log(this.state.books)
-    let savedBooks = this.state.books.filter(book => book.id === e.target.id)
-    savedBooks = savedBooks[0];
-    API.saveBook(savedBooks)
-        .then(this.setState({ message: alert("Your book is saved") }))
-        .catch(err => console.log(err))
-  }
+        console.log(this.state.books)
+        let savedBooks = this.state.books.filter(book => book.id === e.target.id)
+        savedBooks = savedBooks[0];
+        API.saveBook(savedBooks)
+            .then((res) => console.log(res))
+            .catch(err => console.log(err))
+    }
 
 
 render(){

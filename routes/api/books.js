@@ -13,4 +13,6 @@ router
   .put(booksController.update)
   .delete(booksController.remove);
 
+  console.log("You are here");
+
 module.exports = router;

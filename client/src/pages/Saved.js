@@ -11,18 +11,24 @@ class Saved extends Component {
         savedBooks: []
     };
 
-    componentDidMount(){
-        API.getBook()
-        .then(res => this.setState({
-            savedBooks: res.data
-        }))
-        .catch(err => console.log(err))
-    }
+    // grabbing all saved book when page loads
+    componentDidMount() {
+   this.loadBooks();
+    };
 
-    handleDeleteBtn(id){
+    loadBooks = () => {
+        API.getBooks()
+        .then((res) => {
+            this.setState({ savedBooks: res.data });
+        })
+        .catch((err) => console.log(err));
+      };
+
+    //deleting a book by id 
+    handleDeleteButton = id => {
         API.deleteBook(id)
-        .then(res => this.componentDidMount())
-        .catch(err => console.log(err))
+        .then(res => this.loadBooks())
+            .catch(err => console.log(err))
     }
     render() {
         return (
@@ -32,8 +38,8 @@ class Saved extends Component {
       </div>
       <div className="container">
     < SavedCard 
-savedBooks={this.state.savedBooks} 
-handleDeleteBtn ={ this.handleDeleteBtn}
+        savedBooks={this.state.savedBooks}
+        handleDeleteButton={this.handleDeleteButton} 
     />
       </div>
             </div>
